@@ -1,13 +1,33 @@
 # git-ice-breaker
-A rough and ready guide to using (and abusing) git.
+A rough and ready guide to using (and abusing) git via `cli`.  No IDE integrations, no fluff, just pure `git`.
 
 ## So what are we doing here? 
 
 This guide will attempt to take someone who has 0 `git` experience and while it won't make you a hero it will give you
 enough information and exercises to be comfortable using git in your projects and for sharing code with the wider world. 
 
-## Getting started (installing)
+## Getting started 
 
+Here are just the very basics for installing and setting up `git`.  Once you have done the day zero config you shouldn't
+ever need to rerun these commands. 
+
+### Installing
+
+Pretty simple, go here and pick your OS and download / install it.
+* [Downloads](https://git-scm.com/downloads)
+
+If you are on `*nix` systems it's very likely that your OS package manager will have `git` on there already, 
+`brew` also has it on macOS.
+
+### Day zero config
+
+First of all setup your name and email in the global `git` config: 
+```shell
+git config --global user.name "My Name"
+git config --global user.email "myname@email.com"
+```
+
+This means that these pieces of configuration will apply in _every_ repository you touch.
 
 ## Some concepts 
 
@@ -91,7 +111,7 @@ Changes to be committed:
         new file:   b.txt
 ```
 
-Now these changes are said to be "staged" for commit, and as the help text says you can use `git restore` to unstage them. 
+Now these changes are said to be "staged" for commit, and as the help text says you can use `git restore` to unstage them.
 
 ## Your first commit
 
@@ -254,12 +274,45 @@ Bad affirmations aside here is the command:
 git commit -m "Adds new feature X and tests"
 ```
 
+### Checking the log 
 
+Now you have some changes `committed` you can use the various flavours of the `log` command the see the log of commits. 
+
+```shell
+# Just see the commit log in a long format
+git log
+
+# See the log and the changes (diff) from each commit
+git log -p  
+
+# Short and sweet
+git log --oneline --decorate
+
+#  I'll let you work it out ;) 
+git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --all
+```
 
 ### Pushing your changes 
 
+Finally, we can push the changes to github! 
+
+This is as simple as: 
+```shell
+# Straight push (not forcing update of the remote)
+git push
+
+# Force push (updates the history of the remote)
+git push --force
+```
+
+Generally you will only need to `force push` if you have `rebased` locally.  These are semi-advanced? concepts and I 
+wouldn't worry yourself too much about it if you are a one-man band as you will never get a merge conflict. 
+
+Just use `git push` and carry on. 
 
 ### Raising a pull request
+
+Now we depart from the commandline and got back into [Github](https://github.com/)
 
 
 ### Merging onto main 
@@ -268,7 +321,7 @@ git commit -m "Adds new feature X and tests"
 ### Check main back out and pull the code changes
 
 
-## Some additional exercises
+## Additional help and exercises
 
 You can find a few exercises in the [exercises](./exercises.md) file and their solutions in [solutions](./solutions.md).
 
