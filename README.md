@@ -308,18 +308,69 @@ git push --force
 Generally you will only need to `force push` if you have `rebased` locally.  These are semi-advanced? concepts and I 
 wouldn't worry yourself too much about it if you are a one-man band as you will never get a merge conflict. 
 
-Just use `git push` and carry on. 
+Just use `git push` and carry on, also worth noting that when you `push` GitHub responds with a link to create a pull request
+so you can do the next bit easily. 
 
-### Raising a pull request
+### Raising a pull request / merge request
 
-Now we depart from the commandline and got back into [Github](https://github.com/)
+`merge` is `gitlabs` flavour, `pull` is `githubs` flavour.  They are _exactly_ the same thing / concept.  
 
+> Get your code changes from a branch back into the default branch (usually main)
+
+Now we depart from the commandline and get back into [Github](https://github.com/) and either use the link GitHub gave
+you when you `pushed` your branch or navigate to the repos home page and you should find a nice big button: 
+
+![New PR](./assets/new_pr.png)
+
+From here you can then create a pull request with a title, description and you can also change the `base` branch for
+the PR (the branch you want to merge your changes into).  This is nearly always the `default branch` (`main`). 
+
+![PR Form](./assets/pr_form.png)
+
+Once you have filled out the title and description and attached any supporting files you wish you can hit the big
+`create pull request` button at the bottom of the form and ta-da! you have just created your first PR! 
 
 ### Merging onto main 
 
+Now we have a shiny new PR: 
+
+![First PR](./assets/first_pr.png)
+
+It is at this point that pipelines would get automatically triggered to build and test the codebase on the branch so 
+that you would have a continuous integration where changes are tested before they are merged.  Either way that's well
+outside the scope of an intro to `git` but here's a link to [GitHub Actions](https://docs.github.com/en/actions) 
+if you are interested in `CI/CD`.
+
+Either way when you are happy that the changes are as you expect, all tests have been performed you can hit the big 
+green `merge pull request` button and that's it.  You have just merged your code changes back onto `main`.  Your branch
+will be deleted from GitHub (in default case, you can opt to keep the branch if you want).  
+
+There are other merge options such as `squash merge` and `rebase` merges but again this is more down to individual teams 
+and organisations to decide what the `merge strategy` of an organisation looks like.  Sometimes even teams within 
+organisations will have different strategies. 
 
 ### Check main back out and pull the code changes
 
+So now `main` has had our code changes merged onto it but wait!  my local copy of the repo is still on my old branch that
+I just merged.  How do I prepare for doing another change? 
+
+```shell
+# First, checkout main
+git checkout main
+
+# As we do not have the changes we just made to main, this will actually modify our local copy of the repository to 
+# before we merged onto main.  But we want to:
+git pull
+```
+
+The `pull` command tells `git` to "Go to the remote and pull me down any changes to this branch".  This has the 
+effect of pulling the commits we just added to `main` as part of our `pull request`.  
+
+Now your local repo is on what's known as: 
+
+> HEAD of main (or tip of main)
+
+From here it's a simple `git checkout -b feat/my-second-feature` and you can start this cycle all over again! 
 
 ## Additional help and exercises
 
