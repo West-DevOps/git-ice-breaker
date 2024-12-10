@@ -342,12 +342,16 @@ outside the scope of an intro to `git` but here's a link to [GitHub Actions](htt
 if you are interested in `CI/CD`.
 
 Either way when you are happy that the changes are as you expect, all tests have been performed you can hit the big 
-green `merge pull request` button and that's it.  You have just merged your code changes back onto `main`.  Your branch
-will be deleted from GitHub (in default case, you can opt to keep the branch if you want).  
+green `merge pull request` button and that's it.  You have just merged your code changes back onto `main`. 
 
 There are other merge options such as `squash merge` and `rebase` merges but again this is more down to individual teams 
 and organisations to decide what the `merge strategy` of an organisation looks like.  Sometimes even teams within 
 organisations will have different strategies. 
+
+After you have merged your branch you will be given the option to delete the branch your changes were on (it's uncommon
+to leave a branch lying around after it's been merged.  Just delete it).
+
+![Delete Branch](./assets/delete_branch.png)
 
 ### Check main back out and pull the code changes
 
